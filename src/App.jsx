@@ -1,42 +1,56 @@
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import Introduction from './pages/Introduction';
+import { useState } from 'react';
+import Header from './components/Header';
 
 
 function Home() {
  const navigate = useNavigate();
+ const [hoveredButton, setHoveredButton] = useState(null);
   return ( 
     <div className="min-h-screen bg-white text-black">
-      <header className="flex items-center justify-between px-8 py-6">
-        <div className="flex items-center gap-4">
-          <h1 className="text-sm font-semibold tracking-tight">
-            SKINSTRIC
-          </h1>
-          <span className="text-xs text-grey-500">
-            [ INTRO ]
-          </span>
-        </div>
-        <button className="bg-black px-4 py-2 text-xs font-semibold text-white">
-          ENTER CODE
-        </button>
-      </header>
-     <main className="relative flex h-[calc(100vh-80px)] items-center justify-center overflow-hidden">
+      <Header />
+    <main className="relative flex h-[calc(100vh-80px)] items-center justify-center overflow-hidden max-lg:pb-40">
 
   {/* Diamond shape */}
 {/* Left diamond */}
-<div className="pointer-events-none absolute left-0 top-1/2 h-[750px] w-[750px] -translate-x-[85%] -translate-y-1/2 rotate-45 border border-dotted border-gray-400"></div>
+<div className={`pointer-events-none absolute hidden lg:block left-0 top-1/2 h-[750px] w-[750px] -translate-x-[85%] -translate-y-1/2 rotate-45 border border-dotted border-gray-300 transition-opacity duration-500 ${
+  hoveredButton === 'test' ? 'opacity-0' : 'opacity-100'
+}`}></div>
 
 {/* Right diamond */}
-<div className="pointer-events-none absolute right-0 top-1/2 h-[750px] w-[750px] translate-x-[85%] -translate-y-1/2 rotate-45 border border-dotted border-gray-400"></div>
+<div className={`pointer-events-none absolute hidden lg:block right-0 top-1/2 h-[750px] w-[750px] translate-x-[85%] -translate-y-1/2 rotate-45 border border-dotted border-gray-300 transition-opacity duration-500 ${
+  hoveredButton === 'discover' ? 'opacity-0' : 'opacity-100'
+}`}
+></div>
+<div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden lg:hidden">
+  {/* Outer diamond */}
+  <div className="absolute h-[48vw] w-[48vw] max-h-[480px] max-w-[480px] rotate-45 border border-dotted border-gray-300"></div>
+
+  {/* Inner diamond */}
+  <div className="absolute h-[42vw] w-[42vw] max-h-[420px] max-w-[420px] rotate-45 border border-dotted border-gray-300"></div>
+</div>
+ 
   {/* Homepage heading */}
-  <h2 className="relative z-10 text-center text-6xl font-light leading-tight tracking-tight md:text-8xl">
-    Sophisticated
-    <br />
-    skincare
-  </h2>
+<h2
+  className={`relative z-10 text-center text-4xl sm:text-5xl lg:text-8xl font-light leading-tight tracking-tight transition-transform duration-700 ease-in-out ${
+    hoveredButton === 'test'
+      ? '-translate-x-80'
+      : hoveredButton === 'discover'
+      ? 'translate-x-80'
+      : 'translate-x-0'
+  }`}
+>
+  Sophisticated<br />
+  skincare
+</h2>
 <button
   type="button"
-  onClick={() => navigate('/introduction')}
-  className="absolute left-8 top-1/2 z-20 flex -translate-y-1/2 items-center gap-4 text-xs font-medium tracking-wide md:left-16 cursor-pointer"
+  onMouseEnter={() => setHoveredButton('discover')}
+  onMouseLeave={() => setHoveredButton(null)}
+  className={`absolute left-8 top-1/2 z-20 hidden lg:flex -translate-y-1/2 items-center gap-4 text-xs font-medium tracking-wide transition-opacity duration-500 md:left-16 ${
+  hoveredButton === 'test' ? 'opacity-0 pointer-events-none' : 'opacity-100 cursor-pointer'
+}`}
 >
   <span className="flex h-8 w-8 rotate-45 items-center justify-center border border-black">
     <span className="-rotate-45 text-sm">◀</span>
@@ -46,7 +60,14 @@ function Home() {
 </button>
 <button
   type="button"
-  className="absolute right-8 top-1/2 z-20 flex -translate-y-1/2 items-center gap-4 text-xs font-medium tracking-wide md:right-16"
+  onMouseEnter={() => setHoveredButton('test')}
+  onMouseLeave={() => setHoveredButton(null)}  
+  onClick={() => navigate('/introduction')}
+  className={`absolute right-8 top-1/2 z-20 hidden lg:flex -translate-y-1/2 items-center gap-4 text-xs font-medium tracking-wide transition-opacity duration-500 md:right-16 cursor-pointer ${
+  hoveredButton === 'discover'
+    ? 'opacity-0 pointer-events-none'
+    : 'opacity-100'
+}`}
 >
   TAKE TEST
 
@@ -55,13 +76,24 @@ function Home() {
   </span>
 </button>
 {/* Homepage description */}
-<p className="absolute bottom-4 left-8 z-10 max-w-[320px] text-xs font-normal leading-5 md:bottom-10 md:left-10">
+<p className="absolute bottom-[35%] left-1/2 z-10 w-[90%] max-w-[420px] -translate-x-1/2 text-center text-xs font-light text-grey-500 lg:font-normal lg:text-black leading-5 lg:bottom-6 lg:left-10 lg:w-auto lg:max-w-[320px] lg:translate-x-0 lg:text-left">
   SKINSTRIC DEVELOPED AN A.I. THAT CREATES A
   <br />
   HIGHLY-PERSONALIZED ROUTINE TAILORED TO
   <br />
   WHAT YOUR SKIN NEEDS.
 </p>
+<button
+  type="button"
+  onClick={() => navigate('/introduction')}
+  className="absolute bottom-[25%] left-1/2 z-20 flex -translate-x-1/2 items-center gap-4 text-sm font-semibold tracking-wide lg:hidden cursor-pointer"
+>
+  ENTER EXPERIENCE
+
+  <span className="flex h-8 w-8 rotate-45 items-center justify-center border border-black">
+    <span className="-rotate-45 text-sm">▶</span>
+  </span>
+</button>
 
 </main>
     </div>

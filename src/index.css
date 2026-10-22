@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+@keyframes rotate-square {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate-square-slow {
+  animation: rotate-square 30s linear infinite;
+}
+
+.rotate-square-medium {
+  animation: rotate-square 40s linear infinite reverse;
+}
+
+.rotate-square-fast {
+  animation: rotate-square 50s linear infinite;
+}
