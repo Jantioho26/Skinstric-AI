@@ -2,6 +2,8 @@ import { Routes, Route, useNavigate } from 'react-router-dom'
 import Introduction from './pages/Introduction';
 import { useState } from 'react';
 import Header from './components/Header';
+import Upload from './pages/Upload';
+import Results from './pages/Results';
 
 
 function Home() {
@@ -102,10 +104,12 @@ function Home() {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/introduction" element={<Introduction />} />
-    </Routes>
+ <Routes>
+  <Route path="/" element={<Home />} />
+  <Route path="/introduction" element={<Introduction />} />
+  <Route path="/upload" element={<Upload />} />
+  <Route path="/results" element={<Results />} />
+</Routes>
   );
 }
 
