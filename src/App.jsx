@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Header from './components/Header';
 import Upload from './pages/Upload';
 import Results from './pages/Results';
+import Select from "./pages/Select";
 
 
 function Home() {
@@ -78,7 +79,7 @@ function Home() {
   </span>
 </button>
 {/* Homepage description */}
-<p className="absolute bottom-[35%] left-1/2 z-10 w-[90%] max-w-[420px] -translate-x-1/2 text-center text-xs font-light text-grey-500 lg:font-normal lg:text-black leading-5 lg:bottom-6 lg:left-10 lg:w-auto lg:max-w-[320px] lg:translate-x-0 lg:text-left">
+<p className="absolute bottom-[35%] left-1/2 z-10 w-[90%] max-w-[420px] -translate-x-1/2 text-center text-xs font-light text-grey-500 lg:font-normal lg:text-black leading-5 lg:bottom-6 lg:left-10 lg:w-auto lg:max-w-[320px] lg:translate-x-0 lg:text-left max-sm:-translate-y-8">
   SKINSTRIC DEVELOPED AN A.I. THAT CREATES A
   <br />
   HIGHLY-PERSONALIZED ROUTINE TAILORED TO
@@ -108,6 +109,7 @@ function App() {
   <Route path="/" element={<Home />} />
   <Route path="/introduction" element={<Introduction />} />
   <Route path="/upload" element={<Upload />} />
+  <Route path="/select" element={<Select />} />
   <Route path="/results" element={<Results />} />
 </Routes>
   );
