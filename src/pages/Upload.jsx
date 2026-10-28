@@ -25,8 +25,6 @@ if (videoRef.current) {
   videoRef.current.srcObject = stream;
   await videoRef.current.play();
 }
-
-      console.log("Camera access granted!");
     } catch (error) {
       console.error("Camera error:", error);
       alert("Unable to access camera. Please check your permissions.");
@@ -50,8 +48,6 @@ if (videoRef.current) {
 
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-    console.log("Selfie captured!");
-
     setCapturedImage(canvas.toDataURL("image/jpeg"));
 
     streamRef.current?.getTracks().forEach((track) => track.stop());
@@ -72,9 +68,6 @@ if (videoRef.current) {
 
     reader.onload = () => {
       const base64Image = reader.result.split(",")[1];
-
-      console.log("Image converted to Base64!");
-      console.log("Base64 length:", base64Image.length);
 
       submitImage(base64Image);
     };
@@ -106,7 +99,6 @@ if (videoRef.current) {
 
       const data = await response.json();
 
-      console.log("Phase 2 API response:", data);
       if (!data.success || !data.data) {
         throw new Error("Invalid analysis response");
       }

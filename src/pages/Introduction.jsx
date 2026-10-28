@@ -36,8 +36,6 @@ function Introduction() {
       throw new Error(data.message || 'Submission failed');
     }
 
-    console.log('API response:', data);
-
     setStep('thankYou');
   } catch (error) {
     console.error('Error submitting information:', error);

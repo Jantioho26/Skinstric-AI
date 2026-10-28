@@ -15,7 +15,6 @@ function Results() {
   const savedResults = sessionStorage.getItem("skinstricResults");
   const results = savedResults ? JSON.parse(savedResults) : null;
 
-  console.log("Saved analysis results:", results);
   const getTopPrediction = (category) => {
     if (!category) return null;
 
